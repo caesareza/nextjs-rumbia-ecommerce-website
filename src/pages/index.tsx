@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
 export default function Home() {
     const isMobile: boolean = false
@@ -30,11 +30,15 @@ export default function Home() {
 
     useEffect(() => {
         fetchPost()
-    }, [lokasi]);
+    }, [lokasi])
 
     return (
         <section className="home">
-            {isAlert && <div className="bg-amber-200 p-5">Nantikan promo iphone terbaru</div>}
+            {isAlert && (
+                <div className="bg-amber-200 p-5">
+                    Nantikan promo iphone terbaru
+                </div>
+            )}
             {isMobile ? (
                 <section>
                     <h1>Ini tampilan mobile</h1>
@@ -50,7 +54,9 @@ export default function Home() {
             <button onClick={handleAlert}>Click Me</button>
             <button onClick={handleAlertSuccess}>Save</button>
             <button onClick={() => handleChangeLocation('Kuta')}>Kuta</button>
-            <button onClick={() => handleChangeLocation('Bedugul')}>Bedugul</button>
+            <button onClick={() => handleChangeLocation('Bedugul')}>
+                Bedugul
+            </button>
         </section>
     )
 }

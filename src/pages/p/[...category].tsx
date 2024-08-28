@@ -1,13 +1,13 @@
-import { NextRouter, useRouter } from "next/router";
-import { useEffect } from "react";
+import { NextRouter, useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 export default function CategoryListPage() {
-    const router:NextRouter = useRouter();
+    const router: NextRouter = useRouter()
 
     useEffect(() => {
         // destructure and get the slug
-        const category = router.query.category;
-        console.log('category = ', category);
+        const category = router.query.category
+        console.log('category = ', category)
     }, [router.query])
 
     return (

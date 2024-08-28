@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 body {
-  background: white;
+    background: white;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
