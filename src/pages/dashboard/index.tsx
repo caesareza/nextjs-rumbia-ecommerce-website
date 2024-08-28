@@ -1,8 +1,8 @@
-export default function Dashboard(){
-    const isLoggedIn: boolean = true;
-    const user: string = "Nisa";
+export default function Dashboard() {
+    const isLoggedIn: boolean = true
+    const user: string = 'Nisa'
 
-    return(
+    return (
         <section>
             <h1>Dashboard</h1>
             <p>Read more to see detail of your report</p>
@@ -13,13 +13,12 @@ export default function Dashboard(){
                 } else {
                     return (
                         <>
-                            <div>Hi {user},  you can not access this page</div>
+                            <div>Hi {user}, you can not access this page</div>
                             <p>Login first</p>
                         </>
                     )
                 }
             })()}
-
         </section>
     )
 }
