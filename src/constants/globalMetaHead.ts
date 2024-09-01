@@ -11,7 +11,7 @@ const globalMetaHead: GlobalMetaHeadProps = {
     description: 'Default site description.',
     url: 'https://fore.coffee',
     keywords: 'coffee, jakarta, indonesia',
-    image: '/logo/fore.png',
+    image: `${process.env.NEXT_PUBLIC_APP_URL}/logo/fore.png`,
 }
 
 export default globalMetaHead

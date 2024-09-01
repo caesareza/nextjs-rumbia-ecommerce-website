@@ -17,7 +17,7 @@ export default function Home() {
                     </div>
                     <div className="image">
                         <img
-                            src="/banner/fore-coffee-late-art.png"
+                            src="/images/banner/fore-coffee-late-art.png"
                             alt="fore coffee late art"
                         />
                     </div>

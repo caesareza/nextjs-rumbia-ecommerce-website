@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 const Logo = () => (
-    <Link href="/public">
+    <Link href="/">
         <img src="/logo/fore.png" alt="Fore Coffee" width={100} />
     </Link>
 )
