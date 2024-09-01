@@ -1,14 +1,40 @@
-// import { useAtomValue } from 'jotai'
-// import { isUserLoginAtom } from "@/store/auth";
+import { FormEvent } from 'react'
+// import { useRouter } from 'next/router'
 
-export default function Login() {
-    // const isUserLogin = useAtomValue(isUserLoginAtom)
+export default function LoginPage() {
+    // const router = useRouter()
 
-    // console.log('isUserLogin', isUserLogin)
+    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+
+        // const formData = new FormData(event.currentTarget)
+        // const email = formData.get('email')
+        // const password = formData.get('password')
+        //
+        // console.log('email', email, password)
+        // const response = await fetch('/api/auth/login', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({ email, password }),
+        // })
+        //
+        // if (response.ok) {
+        //     router.push('/profile')
+        // } else {
+        //     // Handle errors
+        // }
+    }
 
     return (
-        <>
-            <h1>Login</h1>
-        </>
+        <form onSubmit={handleSubmit}>
+            <input type="email" name="email" placeholder="Email" required />
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+            />
+            <button type="submit">Login</button>
+        </form>
     )
 }
