@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { MENU, MenuProps } from '@/components/layouts/Header/constants/menu'
+import { MENU, MenuProps } from '../constants/menu'
 
 export default function NavMenu() {
     return (
-        <nav className="space-x-3 font-semibold">
+        <nav className="hidden md:block ml-10 font-bold text-green-800 space-x-10">
             {MENU.map((value: MenuProps) => (
                 <Link
                     href={value.href}
