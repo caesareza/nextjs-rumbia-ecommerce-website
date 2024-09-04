@@ -1,14 +1,40 @@
-// import { useAtomValue } from 'jotai'
-// import { isUserLoginAtom } from "@/store/auth";
+import { useForm, SubmitHandler } from 'react-hook-form'
 
-export default function Login() {
-    // const isUserLogin = useAtomValue(isUserLoginAtom)
+type Inputs = {
+    name: string
+    password: string
+}
 
-    // console.log('isUserLogin', isUserLogin)
+export default function App() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<Inputs>()
+
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        // eslint-disable-next-line no-console
+        console.log(data)
+    }
 
     return (
-        <>
-            <h1>Login</h1>
-        </>
+        /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
+        <form onSubmit={handleSubmit(onSubmit)}>
+            {/* register your input into the hook by invoking the "register" function */}
+            <input
+                {...register('name', { required: true })}
+                className="border p-2"
+            />
+
+            {/* include validation with required or other standard HTML validation rules */}
+            <input
+                {...register('password', { required: true })}
+                className="border p-2"
+            />
+            {/* errors will return when field validation fails  */}
+            {errors.password && <span>This field is required</span>}
+
+            <input type="submit" className="bg-red-600 text-white p-2" />
+        </form>
     )
 }

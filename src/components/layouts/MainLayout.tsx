@@ -1,19 +1,32 @@
-import { PropsWithChildren } from 'react'
-import Link from 'next/link'
+import { ReactNode, memo } from 'react'
+import Header from './Header'
+import Footer from './Footer'
+import { Container } from '@/components/ui'
 
-export default function Layout({ children }: PropsWithChildren) {
+import { NextFontWithVariable } from 'next/dist/compiled/@next/font'
+import { Roboto } from 'next/font/google'
+
+const roboto: NextFontWithVariable = Roboto({
+    weight: '400',
+    subsets: ['latin'],
+    variable: '--font-roboto',
+})
+
+const MemoizedHeader = memo(Header)
+const MemoizedFooter = memo(Footer)
+
+interface LayoutProps {
+    children: ReactNode
+}
+
+export default function Layout({ children }: LayoutProps) {
     return (
         <>
-            <header>
-                <nav>
-                    <Link href="/">Home</Link>
-                    <Link href="/about">About</Link>
-                    <Link href="/contact">Contact</Link>
-                    <Link href="/blog">Blog</Link>
-                </nav>
-            </header>
-            <main>{children}</main>
-            <footer>ini main layout footer</footer>
+            <MemoizedHeader />
+            <main className={roboto.className + `main bg-white py-10`}>
+                <Container>{children}</Container>
+            </main>
+            <MemoizedFooter />
         </>
     )
 }
