@@ -1,13 +1,11 @@
-import { useAtomValue } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { formatRupiah } from '@/utils/numberUtils'
 import { useDisclosure } from '@/hooks/useDisclosure'
-
-import { useAtom } from 'jotai'
 import { cartListAtom } from '@/store/cartAtom'
+import { productDetailAtom } from '@/store/productAtom'
 
 import ProductRelated from './components/ProductRelated'
 import ModalAddToCart from './components/ModalAddToCart'
-import { productDetailAtom } from '@/store/productAtom'
 
 export default function Page() {
     const { isOpen, onOpen, onClose } = useDisclosure()

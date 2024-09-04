@@ -1,3 +1,4 @@
 import { atom } from 'jotai'
 
-export const productDetailAtom = atom()
+// eslint-disable-next-line
+export const productDetailAtom = atom<any>()
