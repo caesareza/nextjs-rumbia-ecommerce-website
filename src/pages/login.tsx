@@ -1,40 +1,40 @@
-import { FormEvent } from 'react'
-// import { useRouter } from 'next/router'
+import { useForm, SubmitHandler } from 'react-hook-form'
 
-export default function LoginPage() {
-    // const router = useRouter()
+type Inputs = {
+    name: string
+    password: string
+}
 
-    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
+export default function App() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<Inputs>()
 
-        // const formData = new FormData(event.currentTarget)
-        // const email = formData.get('email')
-        // const password = formData.get('password')
-        //
-        // console.log('email', email, password)
-        // const response = await fetch('/api/auth/login', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ email, password }),
-        // })
-        //
-        // if (response.ok) {
-        //     router.push('/profile')
-        // } else {
-        //     // Handle errors
-        // }
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        // eslint-disable-next-line no-console
+        console.log(data)
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="email" name="email" placeholder="Email" required />
+        /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
+        <form onSubmit={handleSubmit(onSubmit)}>
+            {/* register your input into the hook by invoking the "register" function */}
             <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
+                {...register('name', { required: true })}
+                className="border p-2"
             />
-            <button type="submit">Login</button>
+
+            {/* include validation with required or other standard HTML validation rules */}
+            <input
+                {...register('password', { required: true })}
+                className="border p-2"
+            />
+            {/* errors will return when field validation fails  */}
+            {errors.password && <span>This field is required</span>}
+
+            <input type="submit" className="bg-red-600 text-white p-2" />
         </form>
     )
 }

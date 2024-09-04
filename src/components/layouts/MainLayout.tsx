@@ -23,7 +23,7 @@ export default function Layout({ children }: LayoutProps) {
     return (
         <>
             <MemoizedHeader />
-            <main className={roboto.className + `main bg-white py-5`}>
+            <main className={roboto.className + `main bg-white py-10`}>
                 <Container>{children}</Container>
             </main>
             <MemoizedFooter />

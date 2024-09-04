@@ -22,7 +22,7 @@ const MENU_SOSMED = [
 
 const Footer: FC = () => {
     return (
-        <footer className="bg-slate-100 py-5">
+        <footer className="bg-slate-100 py-5 text-xs">
             <Container className="flex flex-col md:flex-row">
                 <div>&copy; {YEAR} FORE COFFEE, All Rights Reserved</div>
                 <ul className="md:ml-auto flex space-x-3">

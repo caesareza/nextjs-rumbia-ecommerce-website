@@ -3,7 +3,7 @@ import { MetaHead } from '@/components/common'
 export default function About() {
     return (
         <>
-            <MetaHead title="About Us" />
+            <MetaHead title="xxxx Us" description="desc" />
             <section className="flex">
                 <img
                     src="/images/about-us/ourstory.png"

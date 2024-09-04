@@ -3,24 +3,28 @@ import Link from 'next/link'
 
 function LanguageChooser() {
     return (
-        <ul className="flex space-x-1 items-center">
-            <li>
-                <Link href="/">English</Link>
-            </li>
-            <li>/</li>
-            <li>
-                <Link href="/">Bahasa Indonesia</Link>
-            </li>
-        </ul>
+        <div className="language-chooser space-x-2">
+            <Link href="/">English</Link>
+            <span>|</span>
+            <Link href="/">Bahasa Indonesia</Link>
+        </div>
+    )
+}
+
+function RibbonLinks() {
+    return (
+        <>
+            <Link href="/">Bantuan</Link>
+            <Link href="/">Lokasi Toko</Link>
+        </>
     )
 }
 
 export default function Ribbon() {
     return (
-        <div className="bg-slate-100 py-2">
+        <div className="bg-slate-100 py-2 text-xs">
             <Container className="space-x-5 text-sm flex items-center justify-end">
-                <Link href="/">Bantuan</Link>
-                <Link href="/">Lokasi Toko</Link>
+                <RibbonLinks />
                 <LanguageChooser />
             </Container>
         </div>

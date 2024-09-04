@@ -17,7 +17,7 @@ export const MENU: Array<MenuProps> = [
     },
     {
         id: 3,
-        label: 'Contact',
-        href: '/contact',
+        label: 'Menu',
+        href: '/menu',
     },
 ]

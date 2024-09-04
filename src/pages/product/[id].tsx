@@ -1,74 +1,45 @@
-import { NextPage } from 'next'
-import { NextRouter, useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { GetServerSidePropsContext } from 'next'
+// import { useHydrateAtoms } from 'jotai/utils'
+import { productDetailAtom } from '@/store/productAtom'
 
-type ProductIDProps = string | string[] | undefined
+import ProductDetail from '@/containers/product/product-detail'
+import { MetaHead } from '@/components/common'
+import { fetchSingleProduct } from '@/api/product/api'
+import { ProductProps } from '@/api/product/types'
+import { useEffect } from 'react'
 
-interface Rating {
-    rate: number
-    count: number
+import { useAtom } from 'jotai'
+
+interface ProductDetailProps {
+    data: ProductProps
 }
 
-interface ProductProps {
-    id: number
-    title: string
-    price: number
-    description: string
-    category: string
-    image: string
-    rating: Rating
-}
+const ProductDetailPage = ({ data }: ProductDetailProps) => {
+    // useHydrateAtoms([
+    //     [productDetailAtom, data]
+    // ])
 
-const ProductDetailPage: NextPage = () => {
-    const [product, setProduct] = useState<ProductProps>()
-    const [isLoading, setIsLoading] = useState<boolean>(true)
-
-    const router: NextRouter = useRouter()
-
-    const fetchProductDetail = async (id: ProductIDProps) => {
-        const response = await fetch(`https://fakestoreapi.com/products/${id}`)
-        const data = await response.json()
-
-        if (data) {
-            setProduct(data)
-        }
-
-        setIsLoading(false)
-    }
-
-    const fetchProductRelated = async (productDetail: ProductProps) => {
-        const { category } = productDetail
-
-        const response = await fetch(
-            `https://fakestoreapi.com/products/category/${category}`
-        )
-        const dataProductRelated = await response.json()
-
-        // eslint-disable-next-line no-console
-        console.log('dataProductRelated', dataProductRelated)
-    }
+    const [, setProduct] = useAtom(productDetailAtom)
 
     useEffect(() => {
-        const id: ProductIDProps = router.query.id
-
-        if (!id) return
-        fetchProductDetail(id)
-    }, [router.query])
-
-    useEffect(() => {
-        if (!product) return
-
-        fetchProductRelated(product)
-    }, [product])
-
-    if (isLoading) return 'loading ...'
+        setProduct(data)
+    }, [data.id])
 
     return (
-        <section>
-            <h1>{product?.title}</h1>
-            <p>{product?.description}</p>
-        </section>
+        <>
+            <MetaHead title={data.title} description={data.description} />
+            <ProductDetail />
+        </>
     )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const { id } = context.query
+
+    const data = await fetchSingleProduct(Number(id))
+    return {
+        props: { data },
+    }
 }
 
 export default ProductDetailPage
