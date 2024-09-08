@@ -96,7 +96,7 @@ export default function Page({ data }: ProductDetailProps) {
                 </div>
             </section>
 
-            <ProductRelated productId={data.id} />
+            <ProductRelated category={data.category} />
 
             <ModalAddToCart isOpen={isOpen} onClose={onClose} />
         </>
