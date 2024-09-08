@@ -1,9 +1,8 @@
 import { atom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
+import { ProductProps } from '@/api/product/types'
 
-export const cartListAtom = atomWithStorage<
-    Array<{ id: number; name: string }>
->('cart', [])
+export const cartListAtom = atomWithStorage<ProductProps[]>('cart', [])
 export const cartTotalAtom = atom<number>((get) => get(cartListAtom).length)
 // export const cartTotalPriceAtom = atom<number>((get) => {
 //     let total = 0
