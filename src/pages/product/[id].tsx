@@ -1,25 +1,23 @@
+import { useEffect } from 'react'
 import { GetServerSidePropsContext } from 'next'
-// import { useHydrateAtoms } from 'jotai/utils'
 import { productDetailAtom } from '@/store/productAtom'
-
-import ProductDetail from '@/containers/product/product-detail'
 import { MetaHead } from '@/components/common'
 import { fetchSingleProduct } from '@/api/product/api'
-import { ProductProps } from '@/api/product/types'
-import { useEffect } from 'react'
-
+import { ProductDetailProps } from '@/api/product/types'
 import { useAtom } from 'jotai'
+import ProductDetail from '@/containers/product/product-detail'
 
-interface ProductDetailProps {
-    data: ProductProps
-}
+// imageURL function
+// import {imageURL} from "@/utils/stringUtils";
 
 const ProductDetailPage = ({ data }: ProductDetailProps) => {
-    // useHydrateAtoms([
-    //     [productDetailAtom, data]
-    // ])
-
     const [, setProduct] = useAtom(productDetailAtom)
+
+    // You'll need this imageURL function
+    // to concat your domain image + your image string
+    // const productImageURL = imageURL(data.image)
+    // console.log('productImageURL', productImageURL)
+    // then data.image can be replaced using productImageURL value
 
     useEffect(() => {
         setProduct(data)
@@ -27,8 +25,12 @@ const ProductDetailPage = ({ data }: ProductDetailProps) => {
 
     return (
         <>
-            <MetaHead title={data.title} description={data.description} />
-            <ProductDetail />
+            <MetaHead
+                title={data.title}
+                description={data.description}
+                image={data.image}
+            />
+            <ProductDetail data={data} />
         </>
     )
 }
