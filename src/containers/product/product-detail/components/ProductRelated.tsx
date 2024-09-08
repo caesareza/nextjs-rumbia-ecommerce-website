@@ -1,10 +1,13 @@
-import { useAtomValue } from 'jotai'
-import { productDetailAtom } from '@/store/productAtom'
+import { memo } from 'react'
 
-export default function ProductRelated() {
-    const productID = useAtomValue(productDetailAtom)
+interface ProductRelatedProps {
+    productId: number
+}
 
+function ProductRelated({ productId }: ProductRelatedProps) {
     // eslint-disable-next-line no-console
-    console.log('productID', productID)
+    console.log('productId', productId)
     return <section>Product related</section>
 }
+
+export default memo(ProductRelated)
