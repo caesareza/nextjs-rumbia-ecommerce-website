@@ -1,19 +1,12 @@
 import { atom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
+import { ProductProps } from '@/api/product/types'
 
-export const cartListAtom = atomWithStorage<
-    Array<{ id: number; name: string }>
->('cart', [])
+export const cartListAtom = atomWithStorage<ProductProps[]>('cart', [])
 export const cartTotalAtom = atom<number>((get) => get(cartListAtom).length)
-// export const cartTotalPriceAtom = atom<number>((get) => {
-//     let total = 0
-//     const userCart = get(cartListAtom)
-//     const userCartTotal = get(cartTotalAtom)
-//
-//     if (userCartTotal === 0) return total
-//
-//     const sumCart = array1.reduce(
-//         (accumulator, currentValue) => accumulator + currentValue.price * currentValue.quantity,
-//         total,
-//     );
-// })
+export const cartTotalPriceAtom = atom<number>((get) =>
+    get(cartListAtom)?.reduce((previousValue, currentValue) => {
+        if (!currentValue) return 0
+        return previousValue + (currentValue.price ?? 0)
+    }, 0)
+)
