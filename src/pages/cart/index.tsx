@@ -21,7 +21,7 @@ export default function Cart() {
         // show alert if we have any error
         // also you can show alert message if success then
         // we can use the redirect router to navigate to checkout page or success page
-        router.push('/cart/checkout')
+        router.push('/checkout')
     }
 
     function cartRenderer() {

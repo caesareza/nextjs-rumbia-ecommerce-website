@@ -1,4 +1,4 @@
-import { useAtomValue } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import {
     cartListAtom,
     cartTotalAtom,
@@ -9,19 +9,20 @@ import { formatRupiah } from '@/utils/numberUtils'
 import { useRouter } from 'next/router'
 
 export default function Checkout() {
-    const cart = useAtomValue(cartListAtom)
+    const [cart, setCart] = useAtom(cartListAtom)
     const cartTotal = useAtomValue(cartTotalAtom)
     const cartTotalPrice = useAtomValue(cartTotalPriceAtom)
 
     const router = useRouter()
 
-    const handleContinueCheckout = () => {
+    const handlePayment = () => {
         // this will be your function to place you code logic
         // and POST to API
         // show alert if we have any error
         // also you can show alert message if success then
         // we can use the redirect router to navigate to checkout page or success page
-        router.push('/checkout')
+        setCart([])
+        router.push('/checkout/success')
     }
 
     function cartRenderer() {
@@ -85,7 +86,7 @@ export default function Checkout() {
                             cartTotal === 0 && 'disabled:bg-slate-300'
                         )}
                         disabled={cartTotal === 0}
-                        onClick={handleContinueCheckout}
+                        onClick={handlePayment}
                     >
                         Bayar Sekarang
                     </button>
