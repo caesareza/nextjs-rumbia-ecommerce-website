@@ -8,7 +8,7 @@ import { clsx } from 'clsx'
 import { formatRupiah } from '@/utils/numberUtils'
 import { useRouter } from 'next/router'
 
-export default function Cart() {
+export default function Checkout() {
     const cart = useAtomValue(cartListAtom)
     const cartTotal = useAtomValue(cartTotalAtom)
     const cartTotalPrice = useAtomValue(cartTotalPriceAtom)
@@ -21,7 +21,7 @@ export default function Cart() {
         // show alert if we have any error
         // also you can show alert message if success then
         // we can use the redirect router to navigate to checkout page or success page
-        router.push('/cart/checkout')
+        router.push('/checkout')
     }
 
     function cartRenderer() {
@@ -58,10 +58,20 @@ export default function Cart() {
     return (
         <>
             <h1 title="Your Cart" className="text-3xl font-bold mb-3">
-                Your Cart
+                Checkout
             </h1>
             <div className="flex flex-col space-y-3 md:flex-row md:space-x-5 md:space-y-0">
-                <div className="w-full border p-5">{cartRenderer()}</div>
+                <div className="w-full">
+                    <div className="summary border p-5 mb-3">
+                        {cartRenderer()}
+                    </div>
+                    <div className="summary border p-5 mb-3 font-bold">
+                        <h2 className="text-green-800 font-bold">Pick Up</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            Fore coffee Pasar Santa - 12.00 WIB
+                        </div>
+                    </div>
+                </div>
                 <div className="w-full md:flex-none md:w-[300px]">
                     <div className="summary border p-5 mb-3 font-bold">
                         <h1>RINGKASAN PESANAN: {cartTotal}</h1>
@@ -77,7 +87,7 @@ export default function Cart() {
                         disabled={cartTotal === 0}
                         onClick={handleContinueCheckout}
                     >
-                        Lanjutkan ke Pembayaran
+                        Bayar Sekarang
                     </button>
                 </div>
             </div>

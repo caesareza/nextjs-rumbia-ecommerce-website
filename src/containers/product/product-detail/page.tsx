@@ -16,8 +16,9 @@ export default function Page({ data }: ProductDetailProps) {
     const onHandleAddToCart = async () => {
         const addDataToCart = [
             {
-                id: 1,
-                name: 'Americano',
+                id: data.id,
+                title: 'Regular Ice Americano',
+                price: 20000,
             },
         ]
         setCart([...cart, ...addDataToCart])
