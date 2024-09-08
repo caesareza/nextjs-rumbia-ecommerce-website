@@ -15,3 +15,13 @@ export const fetchSingleProduct = async (id: number): Promise<ProductProps> => {
         'Failed to fetch single products'
     )
 }
+
+export const getProductCategory = async (
+    category: string | undefined
+): Promise<ProductProps[]> => {
+    return apiRequest(
+        () =>
+            axiosInstance.get<ProductProps[]>(`/products/category/${category}`),
+        'Failed to fetch products category'
+    )
+}

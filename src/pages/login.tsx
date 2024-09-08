@@ -34,7 +34,7 @@ export default function App() {
             {/* errors will return when field validation fails  */}
             {errors.password && <span>This field is required</span>}
 
-            <input type="submit" className="bg-red-600 text-white p-2" />
+            <button>Submit</button>
         </form>
     )
 }
