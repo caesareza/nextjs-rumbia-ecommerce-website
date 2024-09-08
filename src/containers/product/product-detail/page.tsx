@@ -7,11 +7,17 @@ import { ProductDetailProps } from '@/api/product/types'
 
 import ProductRelated from './components/ProductRelated'
 import ModalAddToCart from './components/ModalAddToCart'
+import { useIntersectionObserver } from 'usehooks-ts'
 
 export default function Page({ data }: ProductDetailProps) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [quantity, setQuantity] = useState<number>(1)
     const [cart, setCart] = useAtom(cartListAtom)
+
+    const { isIntersecting, ref } = useIntersectionObserver({
+        threshold: 0.5,
+        freezeOnceVisible: true,
+    })
 
     const onHandleAddToCart = async () => {
         const addDataToCart = [
@@ -96,7 +102,13 @@ export default function Page({ data }: ProductDetailProps) {
                 </div>
             </section>
 
-            <ProductRelated category={data.category} />
+            {/*
+                use the useIntersectionObserver hook
+                show ProductRelated component if user scroll to this section
+            */}
+            <div ref={ref}>
+                {isIntersecting && <ProductRelated category={data.category} />}
+            </div>
 
             <ModalAddToCart isOpen={isOpen} onClose={onClose} />
         </>
